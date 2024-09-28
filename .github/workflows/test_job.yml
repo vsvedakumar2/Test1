@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline testing on Test
 
 on:
   push:
@@ -8,25 +8,13 @@ on:
 
     
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build image 
-        env:
-          IMAGE_NAME: my-image
-        run: |
-          docker build -t $DOCKERHUB_USERNAME/$IMAGE_NAME .
-          docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:latest
-
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v3
         with:
           python-version: '3.x'
       - name: Install dependencies
