@@ -1,7 +1,13 @@
 FROM python:3.10-slim
+
+EXPOSE 8080
+
+# Install pip requirements
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
+
 WORKDIR /app
 COPY . /app
-RUN pip install flask
-EXPOSE 8080
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+
+#ENTRYPOINT ["python"]
+CMD ["python", "app.py"]
